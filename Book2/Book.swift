@@ -33,6 +33,7 @@ extension Book {
     //mystery price feature for a 2nd book
     static let mysteryPrice = 9.99
     
+    
     static let mysteryBookBin: [Book] = [
         Book(bookTitle: "The Collapsing Empire",   isbn: "978-00133457", bookPrice: 9.99),
         Book(bookTitle: "A Wise Man's Fear",   isbn: "978-0066732", bookPrice: 9.99),

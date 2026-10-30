@@ -31,7 +31,8 @@ struct ContentView: View {
                 message += "\nMystery book: \(mystery.bookTitle)"
             }
         }
-        message += "\nTotal: \(mysteryTotal.dollarCurrency)"
+        message += "\nTotal: \(mysteryTotal.dollarCurrency.prefix(5))"
+        //** prefix? for string extra characters in confirmationText
         return message
         
     }
@@ -80,6 +81,15 @@ struct ContentView: View {
             Text("Sci Fi Fantasy Book Store")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
+                .bold()
+                .foregroundStyle(
+                    LinearGradient(
+                    colors: [.purple, .indigo],
+                    startPoint: .leading,
+                    endPoint: .trailing
+                    )
+                )
+                //.foregroundStyle(Color("#7030A0"))
             }
             .padding(.vertical)
         }
@@ -93,6 +103,8 @@ struct ContentView: View {
                 .font(.headline)
             Spacer()
             Text(book.bookPrice.dollarCurrency)
+           // precision(.fractionLength(2))
+          //  )
                 .monospacedDigit()
         }
         .padding()
@@ -112,7 +124,10 @@ struct ContentView: View {
                 Text("Total")
                     .font(.title3.bold())
                 Spacer()
-                Text(mysteryTotal.dollarCurrency)
+
+              //  let mysteryTotal = (mysteryTotal * 100).rounded() / 100
+              //  Text(mysteryTotal.dollarCurrency.prefix(5))
+                Text(mysteryTotal.dollarCurrency.prefix(5))
                     .font(.title3.bold())
                     .monospacedDigit()
             }
