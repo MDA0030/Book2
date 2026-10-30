@@ -15,11 +15,13 @@ struct ContentView: View {
     //
     @State private var mysteryBook: Book?
     
+    //returns price of book and adds Book.mysteryPrice of $9.99 if toggled, else adds 0
     private var mysteryTotal: Double {
         guard let book = chosenBook else {return 0}
         return book.bookPrice + (toggleMystery ? Book.mysteryPrice:0)
     }
     
+    //returns msg of book title, the mystery book if chosen and then mysteryTotal limited to XX.XX price.
     private var confirmationText: String {
         guard let book = chosenBook else {return ""}
         
@@ -31,6 +33,7 @@ struct ContentView: View {
                 message += "\nMystery book: \(mystery.bookTitle)"
             }
         }
+        //limits mysteryTotal msg to XX.XX for price
         message += "\nTotal: \(mysteryTotal.dollarCurrency.prefix(5))"
         //** prefix? for string extra characters in confirmationText
         return message
@@ -61,7 +64,7 @@ struct ContentView: View {
         }
     }
         
-    
+    // view for logo and name of book store
     private var header: some View {
         VStack(spacing:8) {
             //Logo
@@ -94,6 +97,7 @@ struct ContentView: View {
             .padding(.vertical)
         }
     
+    //returns view for catalog list row
     private func bookRow(_ book: Book) -> some View {
      
         return HStack {
@@ -113,6 +117,7 @@ struct ContentView: View {
         .contentShape(Rectangle())
         }
     
+    // view for checkout portion, toggle option is connected to toggleMystery, shows price total and button to submit order
     private var checkoutBar: some View {
         VStack(spacing:12) {
             Toggle("Include a mystery 2nd book (\(Book.mysteryPrice.dollarCurrency))",
@@ -133,12 +138,14 @@ struct ContentView: View {
             }
             
             Button("Submit your Order") {
+                //if toggled gets book from mysterBookBin tuple, none if not toggled
                 if toggleMystery {
                     mysteryBook = Book.mysteryBookBin.randomElement()
                 } else {
                     mysteryBook = nil
                 }
             
+                //activates alert
             showConfirmed = true
         }
                 .buttonStyle(.borderedProminent)

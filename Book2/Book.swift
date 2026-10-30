@@ -17,6 +17,7 @@ struct Book: Identifiable, Equatable {
 
 
 extension Book {
+    //tuple for 1st book selection
     static let bookCatalog: [Book] = [
         Book(bookTitle: "War and Peace",   isbn: "978-00124784", bookPrice: 12.99),
         Book(bookTitle: "Brave New World",   isbn: "978-0060850524", bookPrice: 27.50),
@@ -33,7 +34,7 @@ extension Book {
     //mystery price feature for a 2nd book
     static let mysteryPrice = 9.99
     
-    
+    //tuple for selection of a mystery book
     static let mysteryBookBin: [Book] = [
         Book(bookTitle: "The Collapsing Empire",   isbn: "978-00133457", bookPrice: 9.99),
         Book(bookTitle: "A Wise Man's Fear",   isbn: "978-0066732", bookPrice: 9.99),
